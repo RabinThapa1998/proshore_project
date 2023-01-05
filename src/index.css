@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 .trigger {
-  padding: 0 24px;
-  font-size: 18px;
-  line-height: 64px;
+  padding: 0 1.5rem;
+  font-size: 1.125rem;
+  line-height: 4rem;
   cursor: pointer;
   transition: color 0.3s;
 }
@@ -14,8 +14,8 @@
 }
 
 .logo {
-  height: 32px;
-  margin: 16px;
+  height: 2rem;
+  margin: 1rem;
   background: rgba(255, 255, 255, 0.3);
 }
 

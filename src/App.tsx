@@ -1,11 +1,11 @@
-import Layout from '~/components/common/layout';
+import { LayoutComponent } from '~/components/common';
 import { SearchPage } from './pages';
 
 function App() {
   return (
-    <Layout>
+    <LayoutComponent>
       <SearchPage />
-    </Layout>
+    </LayoutComponent>
   );
 }
 

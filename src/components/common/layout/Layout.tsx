@@ -7,36 +7,15 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
+import { Heading } from '~/components/common/typography';
 const { Header, Sider, Content } = Layout;
 
-const Index = ({ children }: { children: React.ReactNode }) => {
+export const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
   const [collapsed, setCollapsed] = useState(false);
   return (
     <Layout className='h-screen'>
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className='logo' />
-        <Menu
-          theme='dark'
-          mode='inline'
-          defaultSelectedKeys={['1']}
-          items={[
-            {
-              key: '1',
-              icon: <UserOutlined />,
-              label: 'nav 1',
-            },
-            {
-              key: '2',
-              icon: <VideoCameraOutlined />,
-              label: 'nav 2',
-            },
-            {
-              key: '3',
-              icon: <UploadOutlined />,
-              label: 'nav 3',
-            },
-          ]}
-        />
+        <Heading className='text-white text-center py-5 mt-5'>Github Search</Heading>
       </Sider>
       <Layout className='site-layout'>
         <Header
@@ -65,5 +44,3 @@ const Index = ({ children }: { children: React.ReactNode }) => {
     </Layout>
   );
 };
-
-export default Index;
