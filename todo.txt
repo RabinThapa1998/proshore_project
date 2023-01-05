@@ -1,0 +1,14 @@
+1) add apis and debounce
+2) add test for apis 
+4) use memoization if necessary
+3) see for bugs
+4) recheck requirements 
+5) add readme --> yarn dev, yarn build, yarn test prettier lint
+6) add documentation
+7) change titles and fabicon
+8) px to rem
+9) responsiveness
+10) if possible hosting
+11) update repo
+12) add google fonts
+

@@ -1,10 +1,10 @@
 import Layout from '~/components/common/layout';
-import Dashboard from './containers/dashboard';
+import { SearchPage } from './pages';
 
 function App() {
   return (
     <Layout>
-      <Dashboard />
+      <SearchPage />
     </Layout>
   );
 }

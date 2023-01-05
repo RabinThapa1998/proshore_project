@@ -53,7 +53,7 @@ const Index = ({ children }: { children: React.ReactNode }) => {
         <Content
           className='site-layout-background'
           style={{
-            margin: '24px 16px',
+            margin: '1.5rem 1rem',
             padding: 24,
             minHeight: 280,
           }}
