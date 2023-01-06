@@ -7,38 +7,50 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
 
 export const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
   const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
 
   return (
-    <Layout className='h-screen' hasSider={true}>
-      <Sider trigger={null} collapsible={false} collapsed={collapsed} width={200}></Sider>
-      <Layout className='site-layout'>
-        <Header
-          className='site-layout-background'
-          style={{
-            padding: 0,
-          }}
-        >
-          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-            className: 'trigger',
-            onClick: () => setCollapsed(!collapsed),
-          })}
-        </Header>
-        <Content
-          className='site-layout-background'
-          style={{
-            margin: '1.5rem 1rem',
-            padding: 24,
-            minHeight: 280,
-          }}
-        >
-          {children}
-        </Content>
-      </Layout>
+    <Layout className='site-layout'>
+      <Header
+        className='site-layout-background'
+        style={{
+          padding: 0,
+        }}
+      >
+        <Menu
+          theme='dark'
+          mode='horizontal'
+          defaultSelectedKeys={['1']}
+          items={[
+            {
+              key: '1',
+              label: 'Home',
+              onClick: () => navigate('/'),
+            },
+            {
+              key: '2',
+              label: 'Details',
+              onClick: () => navigate('/:id'),
+            },
+          ]}
+        />
+      </Header>
+      <Content
+        className='site-layout-background'
+        style={{
+          margin: '3.125rem 6.25rem',
+          padding: 24,
+          minHeight: '100vh',
+        }}
+      >
+        {children}
+      </Content>
     </Layout>
   );
 };

@@ -17,15 +17,15 @@ export function SearchPage() {
 
   return (
     <>
-      <Box component='flex' justify='end' className='w-full '>
+      {/* <Box component='flex' justify='end' className='w-full '>
         <Button type='primary' onClick={showDrawer}>
           Search
         </Button>
-      </Box>
+      </Box> */}
+      <SearchBox />
       <SearchResultTable />
-      <Drawer title='Github Repository Search' placement='right' onClose={onClose} open={open}>
-        <SearchBox />
-      </Drawer>
+      {/* <Drawer title='Github Repository Search' placement='right' onClose={onClose} open={open}> */}
+      {/* </Drawer> */}
     </>
   );
 }

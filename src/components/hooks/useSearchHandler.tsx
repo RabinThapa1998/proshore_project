@@ -13,6 +13,8 @@ import {
 
 export function useSearchHandler() {
   const queries = useAppSelector(selectQueryGlobalState);
+  const queryResult = useAppSelector(selectQueryResultGlobalState);
+
   const error = useAppSelector(selectQueryErrorGlobalState);
 
   const searchDispatch = useAppDispatch();
@@ -60,5 +62,5 @@ export function useSearchHandler() {
     );
   };
 
-  return { queries, onQuerySubmit, data, isFetching, error };
+  return { queries, onQuerySubmit, queryResult, data, isFetching, error };
 }

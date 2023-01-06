@@ -1,14 +1,13 @@
 import { Table } from 'antd';
 import React, { useMemo } from 'react';
 import { useSearchHandler } from '~/components/hooks';
-import { IQueryResult } from '~/types';
-import { useAppSelector, useAppDispatch } from '~/global-states/redux-hooks/reduxHooks';
-import { selectQueryResultGlobalState } from '~/global-states/reducer/searchReducer';
+
+import { useNavigate } from 'react-router-dom';
 
 export function SearchResultTable() {
-  const queryResult = useAppSelector(selectQueryResultGlobalState);
+  const navigate = useNavigate();
 
-  const { onQuerySubmit, isFetching, error } = useSearchHandler();
+  const { onQuerySubmit, isFetching, queryResult, error } = useSearchHandler();
 
   const columns = [
     {
@@ -47,17 +46,26 @@ export function SearchResultTable() {
         number_of_stars: item.stargazers_count,
         watchers: item.watchers_count,
         forks: item.forks_count,
+        full_name: item.full_name,
       };
     });
   };
   const formattedData = useMemo(() => tableRowFormatter(), [queryResult]);
 
-  if (!queryResult) return <>loading</>;
+  if (!queryResult) return <></>;
   if (error) return <>{error}</>;
   return (
     <Table
       dataSource={formattedData}
       columns={columns}
+      onRow={(record) => {
+        return {
+          onClick: (event) => {
+            console.log('open', record);
+            navigate(`/${record.name}?owner=${record.author}`);
+          },
+        };
+      }}
       pagination={{
         total: queryResult.total_count,
         onChange: (page) => {
