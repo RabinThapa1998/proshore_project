@@ -2,9 +2,12 @@ import { Table } from 'antd';
 import React, { useMemo } from 'react';
 import { useSearchHandler } from '~/components/hooks';
 import { IQueryResult } from '~/types';
+import { useAppSelector, useAppDispatch } from '~/global-states/redux-hooks/reduxHooks';
+import { selectQueryResultGlobalState } from '~/global-states/reducer/searchReducer';
 
-export function SearchResultTable({ data }: { data: IQueryResult }) {
-  const { items, incomplete_results, total_count } = data;
+export function SearchResultTable() {
+  const queryResult = useAppSelector(selectQueryResultGlobalState);
+
   const { onQuerySubmit, isFetching } = useSearchHandler();
 
   const columns = [
@@ -35,7 +38,8 @@ export function SearchResultTable({ data }: { data: IQueryResult }) {
     },
   ];
   const tableRowFormatter = () => {
-    return items.map((item) => {
+    if (!queryResult) return [];
+    return queryResult.items.map((item) => {
       return {
         key: item.id,
         name: item.name,
@@ -46,14 +50,15 @@ export function SearchResultTable({ data }: { data: IQueryResult }) {
       };
     });
   };
-  const formattedData = useMemo(() => tableRowFormatter(), [items]);
+  const formattedData = useMemo(() => tableRowFormatter(), [queryResult]);
 
+  if (!queryResult) return <>loading</>;
   return (
     <Table
       dataSource={formattedData}
       columns={columns}
       pagination={{
-        total: total_count,
+        total: queryResult.total_count,
         onChange: (page) => {
           onQuerySubmit({ page });
         },
