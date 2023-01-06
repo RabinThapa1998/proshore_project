@@ -17,16 +17,18 @@ export function Box({
   justify = 'center',
   children,
 }: IBoxProps) {
+  const alignItems = `items-${align}`;
+  const justifyContent = `justify-${justify}`;
   if (component === 'flex') {
     if (direction === 'row') {
       return (
-        <div className={`flex flex-row  items-${align} justify-${justify} ${className}`}>
+        <div className={`flex flex-row  ${alignItems} ${justifyContent} ${className}`}>
           {children}
         </div>
       );
     } else {
       return (
-        <div className={`flex  flex-col items-${align} justify-${justify}  ${className}`}>
+        <div className={`flex  flex-col ${alignItems} ${justifyContent}  ${className}`}>
           {children}
         </div>
       );

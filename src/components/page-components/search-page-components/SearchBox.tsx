@@ -34,7 +34,7 @@ export function SearchBox() {
         </Box>
       </Form>
       {isFetching ? (
-        <Box component='flex' justify='center' align='center'>
+        <Box component='flex' className='w-full '>
           <Spin size='small' />
         </Box>
       ) : null}
