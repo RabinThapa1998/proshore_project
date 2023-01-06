@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import { useSearchHandler } from '~/components/hooks';
 import { Tsort, Torder } from '~/types';
 import { useNavigate } from 'react-router-dom';
+import { Box } from '~/components/common';
 
 export function SearchResultTable() {
   const navigate = useNavigate();
@@ -67,45 +68,47 @@ export function SearchResultTable() {
   if (error) return <>{error}</>;
   return (
     <>
-      <Select
-        defaultValue='desc'
-        style={{ width: 120 }}
-        onChange={handleOrderChange}
-        options={[
-          {
-            value: 'asc',
-            label: 'ASC',
-          },
-          {
-            value: 'desc',
-            label: 'Desc',
-          },
-        ]}
-      />
+      <Box component='flex' direction='row' justify='end' className='mb-2 gap-x-2'>
+        <Select
+          defaultValue='desc'
+          style={{ width: 120 }}
+          onChange={handleOrderChange}
+          options={[
+            {
+              value: 'asc',
+              label: 'ASC',
+            },
+            {
+              value: 'desc',
+              label: 'Desc',
+            },
+          ]}
+        />
 
-      <Select
-        defaultValue=''
-        style={{ width: 120 }}
-        onChange={handleSortChange}
-        options={[
-          {
-            value: '',
-            label: 'Best Match',
-          },
-          {
-            value: 'stars',
-            label: 'Stars',
-          },
-          {
-            value: 'forks',
-            label: 'Forks',
-          },
-          {
-            value: 'updated',
-            label: 'Updated',
-          },
-        ]}
-      />
+        <Select
+          defaultValue=''
+          style={{ width: 120 }}
+          onChange={handleSortChange}
+          options={[
+            {
+              value: '',
+              label: 'Best Match',
+            },
+            {
+              value: 'stars',
+              label: 'Stars',
+            },
+            {
+              value: 'forks',
+              label: 'Forks',
+            },
+            {
+              value: 'updated',
+              label: 'Updated',
+            },
+          ]}
+        />
+      </Box>
 
       <Table
         dataSource={formattedData}

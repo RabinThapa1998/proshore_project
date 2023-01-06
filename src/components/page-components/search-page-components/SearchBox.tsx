@@ -10,18 +10,19 @@ export function SearchBox() {
   };
   return (
     <>
-      <Box direction='row' justify='start' align='center'>
-        <Form
-          name='basic'
-          initialValues={{ remember: true }}
-          onFinish={onQuerySubmit}
-          onFinishFailed={onFinishFailed}
-          autoComplete='off'
-          layout='vertical'
-        >
+      <Form
+        name='basic'
+        initialValues={{ remember: true }}
+        onFinish={onQuerySubmit}
+        onFinishFailed={onFinishFailed}
+        autoComplete='off'
+        layout='vertical'
+      >
+        <Box direction='row' component='flex' justify='between' align='end' className='gap-x-5'>
           <Form.Item
             label='Repository name'
             name='query'
+            className='w-full'
             rules={[{ required: true, message: 'Please enter!' }]}
           >
             <Input />
@@ -31,9 +32,9 @@ export function SearchBox() {
               Search
             </Button>
           </Form.Item>
-        </Form>
-        {isFetching ? <Heading>Loading...</Heading> : null}
-      </Box>
+        </Box>
+      </Form>
+      {isFetching ? <Heading>Loading...</Heading> : null}
     </>
   );
 }

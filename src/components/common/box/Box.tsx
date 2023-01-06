@@ -3,8 +3,8 @@ import React from 'react';
 interface IBoxProps {
   direction?: 'row' | 'column';
   component?: 'flex' | 'block';
-  align?: 'center' | 'start' | 'end';
-  justify?: 'center' | 'start' | 'end';
+  align?: 'center' | 'start' | 'end' | 'between' | 'around';
+  justify?: 'center' | 'start' | 'end' | 'between' | 'around';
   children: React.ReactNode;
   className?: string;
 }
