@@ -3,45 +3,14 @@ import React, { useMemo } from 'react';
 import { useSearchHandler } from '~/components/hooks';
 import { Tsort, Torder } from '~/types';
 import { useNavigate } from 'react-router-dom';
-import { Box } from '~/components/common';
+import { Box, Body } from '~/components/common';
+import { columns } from './TableColumns';
 
 export function SearchResultTable() {
   const navigate = useNavigate();
 
   const { onQuerySubmit, isFetching, queryResult, error } = useSearchHandler();
 
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      width: 150,
-    },
-    {
-      title: 'Author',
-      dataIndex: 'author',
-      key: 'author',
-      width: 100,
-    },
-    {
-      title: 'Number of Stars',
-      dataIndex: 'number_of_stars',
-      key: 'number_of_stars',
-      width: 100,
-    },
-    {
-      title: 'Watchers',
-      dataIndex: 'watchers',
-      key: 'watchers',
-      width: 100,
-    },
-    {
-      title: 'Forks',
-      dataIndex: 'forks',
-      key: 'forks',
-      width: 100,
-    },
-  ];
   const tableRowFormatter = () => {
     if (!queryResult?.items.length) return [];
     return queryResult.items.map((item) => {
@@ -64,8 +33,8 @@ export function SearchResultTable() {
     onQuerySubmit({ order: value });
   };
 
-  if (!queryResult) return <></>;
-  if (error) return <>{error}</>;
+  if (!queryResult) return <Body className='text-gray-400'> No queries yet</Body>;
+  if (error) return <Body className='text-red-500'>{error}</Body>;
   return (
     <>
       <Box component='flex' direction='row' justify='end' className='mb-2 gap-x-2'>

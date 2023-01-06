@@ -1,23 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.trigger {
-  padding: 0 1.5rem;
-  font-size: 1.125rem;
-  line-height: 4rem;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.trigger:hover {
-  color: #1890ff;
-}
-
-.logo {
-  height: 2rem;
-  margin: 1rem;
-  background: rgba(255, 255, 255, 0.3);
-}
 
 .site-layout-background {
   margin: 1.25rem clamp(0.625rem, 5vw, 6.25rem);

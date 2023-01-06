@@ -25,7 +25,6 @@ export function SearchDetailPage() {
       ]);
     },
   );
-  console.log('🚀 ~ file: SearchDetailPage.tsx:14 ~ SearchDetailPage ~ repoDetails', repoDetails);
 
   const columns = [
     {
@@ -37,6 +36,7 @@ export function SearchDetailPage() {
           {text}
         </a>
       ),
+      width: 100,
     },
     {
       title: 'Repository Name',
@@ -51,16 +51,19 @@ export function SearchDetailPage() {
           {text}
         </a>
       ),
+      width: 100,
     },
     {
       title: 'Number of Open Issues',
       dataIndex: 'number_of_issues',
       key: 'number_of_issues',
+      width: 100,
     },
     {
       title: 'Default Branch',
       dataIndex: 'default_branch',
       key: 'default_branch',
+      width: 100,
     },
   ];
   const tableRowFormatter = () => {
@@ -68,7 +71,7 @@ export function SearchDetailPage() {
     return [
       {
         key: repoDetails[0].id,
-        owner_name: repoDetails[1]?.name,
+        owner_name: repoDetails[1]?.name || 'Not Available',
         repository_name: repoDetails[0].name,
         number_of_issues: repoDetails[0].open_issues_count,
         default_branch: repoDetails[0].default_branch,
@@ -83,6 +86,7 @@ export function SearchDetailPage() {
       columns={columns}
       loading={isSearchDetailsLoading}
       pagination={false}
+      scroll={{ x: 1000 }}
     />
   );
 }

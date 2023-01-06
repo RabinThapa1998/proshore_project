@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Spin } from 'antd';
 import { Box, Heading } from '~/components/common';
 import { useSearchHandler } from '~/components/hooks';
 
@@ -34,7 +33,11 @@ export function SearchBox() {
           </Form.Item>
         </Box>
       </Form>
-      {isFetching ? <Heading>Loading...</Heading> : null}
+      {isFetching ? (
+        <Box component='flex' justify='center' align='center'>
+          <Spin size='small' />
+        </Box>
+      ) : null}
     </>
   );
 }

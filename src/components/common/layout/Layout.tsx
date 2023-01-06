@@ -1,11 +1,4 @@
 import React, { useState } from 'react';
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,7 +12,7 @@ export const LayoutComponent = ({ children }: { children: React.ReactNode }) => 
     <Layout className='site-layout'>
       <Header
         style={{
-          padding: 0,
+          padding: '0 1.25rem',
         }}
       >
         <Menu
@@ -40,7 +33,7 @@ export const LayoutComponent = ({ children }: { children: React.ReactNode }) => 
           ]}
         />
       </Header>
-      <Content className='site-layout-background'>{children}</Content>
+      <Content className='site-layout-background h-full'>{children}</Content>
     </Layout>
   );
 };
