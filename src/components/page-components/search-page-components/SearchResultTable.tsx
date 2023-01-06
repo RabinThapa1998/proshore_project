@@ -8,7 +8,7 @@ import { selectQueryResultGlobalState } from '~/global-states/reducer/searchRedu
 export function SearchResultTable() {
   const queryResult = useAppSelector(selectQueryResultGlobalState);
 
-  const { onQuerySubmit, isFetching } = useSearchHandler();
+  const { onQuerySubmit, isFetching, error } = useSearchHandler();
 
   const columns = [
     {
@@ -38,7 +38,7 @@ export function SearchResultTable() {
     },
   ];
   const tableRowFormatter = () => {
-    if (!queryResult) return [];
+    if (!queryResult?.items.length) return [];
     return queryResult.items.map((item) => {
       return {
         key: item.id,
@@ -53,6 +53,7 @@ export function SearchResultTable() {
   const formattedData = useMemo(() => tableRowFormatter(), [queryResult]);
 
   if (!queryResult) return <>loading</>;
+  if (error) return <>{error}</>;
   return (
     <Table
       dataSource={formattedData}

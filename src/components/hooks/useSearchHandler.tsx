@@ -7,10 +7,14 @@ import {
   selectQueryGlobalState,
   setQueryResultGlobalState,
   setQueriesGlobalState,
+  selectQueryErrorGlobalState,
+  setQueryError,
 } from '~/global-states/reducer/searchReducer';
 
 export function useSearchHandler() {
   const queries = useAppSelector(selectQueryGlobalState);
+  const error = useAppSelector(selectQueryErrorGlobalState);
+
   const searchDispatch = useAppDispatch();
 
   const { data, isFetching } = useQuery(
@@ -26,7 +30,7 @@ export function useSearchHandler() {
     {
       enabled: queries.query !== '',
       onSuccess: (res) => {
-        if (res)
+        if (res?.total_count) {
           searchDispatch(
             setQueryResultGlobalState({
               queryResult: {
@@ -36,6 +40,13 @@ export function useSearchHandler() {
               },
             }),
           );
+        } else {
+          searchDispatch(
+            setQueryError({
+              error: (res as any).message || 'something went wrong',
+            }),
+          );
+        }
       },
       refetchOnMount: false,
       refetchOnWindowFocus: false,
@@ -49,5 +60,5 @@ export function useSearchHandler() {
     );
   };
 
-  return { queries, onQuerySubmit, data, isFetching };
+  return { queries, onQuerySubmit, data, isFetching, error };
 }
