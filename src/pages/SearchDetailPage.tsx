@@ -25,6 +25,7 @@ export function SearchDetailPage() {
       ]);
     },
   );
+  console.log('🚀 ~ file: SearchDetailPage.tsx:14 ~ SearchDetailPage ~ repoDetails', repoDetails);
 
   const columns = [
     {

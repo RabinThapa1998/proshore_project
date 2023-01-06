@@ -18,7 +18,6 @@ export const LayoutComponent = ({ children }: { children: React.ReactNode }) => 
   return (
     <Layout className='site-layout'>
       <Header
-        className='site-layout-background'
         style={{
           padding: 0,
         }}
@@ -41,16 +40,7 @@ export const LayoutComponent = ({ children }: { children: React.ReactNode }) => 
           ]}
         />
       </Header>
-      <Content
-        className='site-layout-background'
-        style={{
-          margin: '3.125rem 6.25rem',
-          padding: 24,
-          minHeight: '100vh',
-        }}
-      >
-        {children}
-      </Content>
+      <Content className='site-layout-background'>{children}</Content>
     </Layout>
   );
 };

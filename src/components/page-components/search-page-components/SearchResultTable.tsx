@@ -1,7 +1,7 @@
-import { Table } from 'antd';
+import { Button, Form, Select, Table } from 'antd';
 import React, { useMemo } from 'react';
 import { useSearchHandler } from '~/components/hooks';
-
+import { Tsort, Torder } from '~/types';
 import { useNavigate } from 'react-router-dom';
 
 export function SearchResultTable() {
@@ -56,29 +56,83 @@ export function SearchResultTable() {
     });
   };
   const formattedData = useMemo(() => tableRowFormatter(), [queryResult]);
+  const handleSortChange = (value: Tsort) => {
+    onQuerySubmit({ sort: value });
+  };
+  const handleOrderChange = (value: Torder) => {
+    onQuerySubmit({ order: value });
+  };
 
   if (!queryResult) return <></>;
   if (error) return <>{error}</>;
   return (
-    <Table
-      dataSource={formattedData}
-      columns={columns}
-      scroll={{ x: 1000 }}
-      onRow={(record) => {
-        return {
-          onClick: (event) => {
-            console.log('open', record);
-            navigate(`/${record.name}?owner=${record.author}`);
+    <>
+      <Select
+        defaultValue='desc'
+        style={{ width: 120 }}
+        onChange={handleOrderChange}
+        options={[
+          {
+            value: 'asc',
+            label: 'ASC',
           },
-        };
-      }}
-      pagination={{
-        total: queryResult.total_count,
-        onChange: (page) => {
-          onQuerySubmit({ page });
-        },
-      }}
-      loading={isFetching}
-    />
+          {
+            value: 'desc',
+            label: 'Desc',
+          },
+        ]}
+      />
+
+      <Select
+        defaultValue=''
+        style={{ width: 120 }}
+        onChange={handleSortChange}
+        options={[
+          {
+            value: '',
+            label: 'Best Match',
+          },
+          {
+            value: 'stars',
+            label: 'Stars',
+          },
+          {
+            value: 'forks',
+            label: 'Forks',
+          },
+          {
+            value: 'updated',
+            label: 'Updated',
+          },
+        ]}
+      />
+
+      <Table
+        dataSource={formattedData}
+        columns={columns}
+        sticky
+        summary={() => <Table.Summary fixed={'top'}></Table.Summary>}
+        scroll={{ x: 1000 }}
+        onRow={(record) => {
+          return {
+            onClick: (event) => {
+              console.log('open', record);
+              navigate(`/${record.name}?owner=${record.author}`);
+            },
+          };
+        }}
+        pagination={{
+          total: queryResult.total_count,
+          onChange: (page) => {
+            onQuerySubmit({ page });
+          },
+          onShowSizeChange(current, size) {
+            onQuerySubmit({ per_page: size });
+          },
+          pageSizeOptions: ['10', '25', '50'],
+        }}
+        loading={isFetching}
+      />
+    </>
   );
 }
