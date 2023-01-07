@@ -37,7 +37,7 @@ export function SearchResultTable() {
   if (error) return <Body className='text-red-500'>{error}</Body>;
   return (
     <>
-      <Box component='flex' direction='row' justify='end' className='mb-2 gap-x-2'>
+      <Box component='flex' direction='row' className='mb-2 gap-x-2 justify-end'>
         <Select
           defaultValue='desc'
           style={{ width: 120 }}

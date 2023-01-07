@@ -17,7 +17,7 @@ export function SearchBox() {
         autoComplete='off'
         layout='vertical'
       >
-        <Box direction='row' component='flex' justify='between' align='end' className='gap-x-5'>
+        <Box direction='row' component='flex' className='gap-x-5 justify-between items-end '>
           <Form.Item
             label='Repository name'
             name='query'
@@ -34,7 +34,7 @@ export function SearchBox() {
         </Box>
       </Form>
       {isFetching ? (
-        <Box component='flex' className='w-full '>
+        <Box component='flex' className='w-full justify-center'>
           <Spin size='small' />
         </Box>
       ) : null}
