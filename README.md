@@ -6,6 +6,10 @@ Github Unauthenticated API for searching repositories
 
 ⚡ React JS ⚡ Tailwind CSS ⚡ AntDesign ⚡ React Router ⚡ React Query ⚡ ReduxToolkit
 
+## Template Used
+
+[vite-react-ts-eslint-prettier-antd](https://github.com/RabinThapa1998/vite-react-ts-eslint-prettier-antd)
+
 ## Installation
 
 clone the repository
