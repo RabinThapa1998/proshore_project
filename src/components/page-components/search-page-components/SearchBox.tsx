@@ -3,7 +3,7 @@ import { Box, Heading } from '~/components/common';
 import { useSearchHandler } from '~/components/hooks';
 
 export function SearchBox() {
-  const { onQuerySubmit, isFetching } = useSearchHandler();
+  const { onQuerySubmit, isFetching, queries } = useSearchHandler();
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
@@ -11,7 +11,9 @@ export function SearchBox() {
     <>
       <Form
         name='search-form'
-        initialValues={{ remember: true }}
+        initialValues={{
+          query: queries.query,
+        }}
         onFinish={onQuerySubmit}
         onFinishFailed={onFinishFailed}
         autoComplete='off'
