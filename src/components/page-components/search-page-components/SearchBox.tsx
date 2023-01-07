@@ -10,7 +10,7 @@ export function SearchBox() {
   return (
     <>
       <Form
-        name='basic'
+        name='search-form'
         initialValues={{ remember: true }}
         onFinish={onQuerySubmit}
         onFinishFailed={onFinishFailed}

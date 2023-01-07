@@ -1,4 +1,4 @@
-import { Button, Form, Select, Table } from 'antd';
+import { Tooltip, Form, Select, Table } from 'antd';
 import React, { useMemo } from 'react';
 import { useSearchHandler } from '~/components/hooks';
 import { Tsort, Torder } from '~/types';
@@ -9,7 +9,7 @@ import { columns } from './TableColumns';
 export function SearchResultTable() {
   const navigate = useNavigate();
 
-  const { onQuerySubmit, isFetching, queryResult, error } = useSearchHandler();
+  const { onQuerySubmit, isFetching, queryResult, error, queries } = useSearchHandler();
 
   const tableRowFormatter = () => {
     if (!queryResult?.items.length) return [];
@@ -37,47 +37,55 @@ export function SearchResultTable() {
   if (error) return <Body className='text-red-500'>{error}</Body>;
   return (
     <>
-      <Box component='flex' direction='row' className='mb-2 gap-x-2 justify-end'>
-        <Select
-          defaultValue='desc'
-          style={{ width: 120 }}
-          onChange={handleOrderChange}
-          options={[
-            {
-              value: 'asc',
-              label: 'ASC',
-            },
-            {
-              value: 'desc',
-              label: 'Desc',
-            },
-          ]}
-        />
-
-        <Select
-          defaultValue=''
-          style={{ width: 120 }}
-          onChange={handleSortChange}
-          options={[
-            {
-              value: '',
-              label: 'Best Match',
-            },
-            {
-              value: 'stars',
-              label: 'Stars',
-            },
-            {
-              value: 'forks',
-              label: 'Forks',
-            },
-            {
-              value: 'updated',
-              label: 'Updated',
-            },
-          ]}
-        />
-      </Box>
+      <Form layout='horizontal'>
+        <Box component='flex' direction='row' className='mt-4 gap-x-4 justify-end'>
+          <Form.Item label='Filter'>
+            <Tooltip placement='top' title={!queries.sort ? 'You must change Sort' : ''}>
+              <Select
+                defaultValue='desc'
+                style={{ width: 120 }}
+                disabled={queries.sort === ''}
+                onChange={handleOrderChange}
+                options={[
+                  {
+                    value: 'asc',
+                    label: 'ASC',
+                  },
+                  {
+                    value: 'desc',
+                    label: 'Desc',
+                  },
+                ]}
+              />
+            </Tooltip>
+          </Form.Item>
+          <Form.Item label='Sort'>
+            <Select
+              defaultValue=''
+              style={{ width: 120 }}
+              onChange={handleSortChange}
+              options={[
+                {
+                  value: '',
+                  label: 'Best Match',
+                },
+                {
+                  value: 'stars',
+                  label: 'Stars',
+                },
+                {
+                  value: 'forks',
+                  label: 'Forks',
+                },
+                {
+                  value: 'updated',
+                  label: 'Updated',
+                },
+              ]}
+            />
+          </Form.Item>
+        </Box>
+      </Form>
 
       <Table
         dataSource={formattedData}
