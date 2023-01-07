@@ -95,6 +95,9 @@ export function SearchResultTable() {
         dataSource={formattedData}
         columns={columns}
         sticky
+        rowClassName={(record) => {
+          return 'cursor-pointer';
+        }}
         summary={() => <Table.Summary fixed={'top'}></Table.Summary>}
         scroll={{ x: 1000 }}
         onRow={(record) => {
