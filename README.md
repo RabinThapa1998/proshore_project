@@ -1,6 +1,10 @@
 # Proshore Github Project
 
-Github Unauthenticated API for searching repositories ⚡
+Github Unauthenticated API for searching repositories
+
+## Tech Stack
+
+⚡ React JS ⚡ Tailwind CSS ⚡ AntDesign ⚡ React Router ⚡ React Query
 
 ## Installation
 
