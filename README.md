@@ -15,5 +15,14 @@ install the dependencies
 
 ```bash
 yarn install
+or
+npm install
+```
+
+## Run the project
+
+```bash
 yarn dev
+or
+npm run dev
 ```
