@@ -19,10 +19,10 @@ export function SearchBox() {
       >
         <Box direction='row' component='flex' className='gap-x-5 justify-between items-end '>
           <Form.Item
-            label='Repository name'
+            label='Enter a repository name'
             name='query'
             className='w-full'
-            rules={[{ required: true, message: 'Please enter!' }]}
+            rules={[{ required: true, message: 'repository name is required!' }]}
           >
             <Input />
           </Form.Item>

@@ -37,8 +37,12 @@ export function SearchResultTable() {
   if (error) return <Body className='text-red-500'>{error}</Body>;
   return (
     <>
-      <Form layout='horizontal'>
-        <Box component='flex' direction='row' className='mt-4 gap-x-4 justify-end'>
+      <Form layout='horizontal' size='small'>
+        <Box
+          component='flex'
+          direction='row'
+          className='mt-4 gap-x-4 md:justify-end justify-start flex-wrap'
+        >
           <Form.Item label='Filter'>
             <Tooltip placement='top' title={!queries.sort ? 'You must change Sort' : ''}>
               <Select

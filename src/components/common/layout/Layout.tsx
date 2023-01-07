@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const { Header, Sider, Content } = Layout;
+const { Header, Content, Footer } = Layout;
 
 export const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
-  const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
+  const { id } = useParams();
+  console.log('🚀 ~ file: Layout.tsx:10 ~ LayoutComponent ~ id', id);
 
   return (
     <Layout className='site-layout'>
@@ -19,6 +19,7 @@ export const LayoutComponent = ({ children }: { children: React.ReactNode }) => 
           theme='dark'
           mode='horizontal'
           defaultSelectedKeys={['1']}
+          selectedKeys={id ? ['2'] : ['1']}
           items={[
             {
               key: '1',
@@ -34,6 +35,12 @@ export const LayoutComponent = ({ children }: { children: React.ReactNode }) => 
         />
       </Header>
       <Content className='site-layout-background h-full'>{children}</Content>
+      <Footer style={{ textAlign: 'center' }}>
+        GitHub Repository Search System ©2023 Created by{' '}
+        <a href='https://github.com/RabinThapa1998' target={'_blank'} rel='noreferrer'>
+          Rabin Thapa
+        </a>
+      </Footer>
     </Layout>
   );
 };
