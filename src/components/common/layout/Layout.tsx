@@ -1,13 +1,14 @@
 import { Layout, Menu } from 'antd';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 
 const { Header, Content, Footer } = Layout;
 
 export const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { id } = useParams();
-  console.log('🚀 ~ file: Layout.tsx:10 ~ LayoutComponent ~ id', id);
-
+  const secondPagePath = location.state?.secondPagePath || '/:id';
+  console.log('🚀 ~ file: Layout.tsx:11 ~ LayoutComponent ~ navigate', secondPagePath);
   return (
     <Layout className='site-layout'>
       <Header
@@ -24,12 +25,22 @@ export const LayoutComponent = ({ children }: { children: React.ReactNode }) => 
             {
               key: '1',
               label: 'Home',
-              onClick: () => navigate('/'),
+              onClick: () =>
+                navigate('/', {
+                  state: {
+                    secondPagePath: secondPagePath,
+                  },
+                }),
             },
             {
               key: '2',
               label: 'Details',
-              onClick: () => navigate('/:id'),
+              onClick: () =>
+                navigate(secondPagePath, {
+                  state: {
+                    secondPagePath: secondPagePath,
+                  },
+                }),
             },
           ]}
         />

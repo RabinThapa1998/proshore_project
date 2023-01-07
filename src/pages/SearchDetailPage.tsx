@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams, useLocation } from 'react-router-dom';
 import { Table } from 'antd';
 import { useRepoQueryHandler } from '~/components/hooks';
 
 export function SearchDetailPage() {
+  const location = useLocation();
   const params = useParams();
   const [searchParams] = useSearchParams();
   const ownerName = useMemo(() => searchParams.get('owner'), [searchParams]);

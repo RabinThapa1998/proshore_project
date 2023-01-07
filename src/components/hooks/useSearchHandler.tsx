@@ -32,7 +32,7 @@ export function useSearchHandler() {
     {
       enabled: queries.query !== '',
       onSuccess: (res) => {
-        if (res?.total_count) {
+        if (res && res.total_count >= 0) {
           searchDispatch(
             setQueryResultGlobalState({
               queryResult: {
@@ -40,6 +40,11 @@ export function useSearchHandler() {
                 items: res.items,
                 total_count: res.total_count,
               },
+            }),
+          );
+          searchDispatch(
+            setQueryError({
+              error: '',
             }),
           );
         } else {

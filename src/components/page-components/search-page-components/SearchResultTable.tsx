@@ -100,8 +100,11 @@ export function SearchResultTable() {
         onRow={(record) => {
           return {
             onClick: (event) => {
-              console.log('open', record);
-              navigate(`/${record.name}?owner=${record.author}`);
+              navigate(`/${record.name}?owner=${record.author}`, {
+                state: {
+                  secondPagePath: `/${record.name}?owner=${record.author}`,
+                },
+              });
             },
           };
         }}
