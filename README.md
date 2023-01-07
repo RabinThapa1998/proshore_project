@@ -4,7 +4,7 @@ Github Unauthenticated API for searching repositories
 
 ## Tech Stack
 
-⚡ React JS ⚡ Tailwind CSS ⚡ AntDesign ⚡ React Router ⚡ React Query
+⚡ React JS ⚡ Tailwind CSS ⚡ AntDesign ⚡ React Router ⚡ React Query ⚡ ReduxToolkit
 
 ## Installation
 
