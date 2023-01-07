@@ -1,30 +1,17 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useMemo } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
-import { request } from '~/util/request';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { Table } from 'antd';
-import { Item, IUsers } from '~/types';
+import { useRepoQueryHandler } from '~/components/hooks';
 
 export function SearchDetailPage() {
-  const location = useLocation();
+  const params = useParams();
   const [searchParams] = useSearchParams();
   const ownerName = useMemo(() => searchParams.get('owner'), [searchParams]);
 
-  const { data: repoDetails, isLoading: isSearchDetailsLoading } = useQuery(
-    ['SearchDetailRepoAPI', location.pathname],
-    (): Promise<[Item, IUsers]> => {
-      return Promise.all([
-        request({
-          url: `/repos/${ownerName}${location.pathname}`,
-          method: 'GET',
-        }),
-        request({
-          url: `/users/${ownerName}`,
-          method: 'GET',
-        }),
-      ]);
-    },
-  );
+  const { data: repoDetails, isFetching: isSearchDetailsLoading } = useRepoQueryHandler({
+    ownerName: ownerName || '',
+    repoName: params?.id || '',
+  });
 
   const columns = [
     {
@@ -43,11 +30,7 @@ export function SearchDetailPage() {
       dataIndex: 'repository_name',
       key: 'repository_name',
       render: (text: string) => (
-        <a
-          href={`https://github.com/${ownerName}${location.pathname}`}
-          target='_blank'
-          rel='noreferrer'
-        >
+        <a href={`https://github.com/${ownerName}/${params.id}`} target='_blank' rel='noreferrer'>
           {text}
         </a>
       ),
