@@ -1,7 +1,13 @@
 import React, { useMemo } from 'react';
 import { useParams, useSearchParams, useLocation } from 'react-router-dom';
-import { Table } from 'antd';
+import { Space, Table } from 'antd';
 import { useRepoQueryHandler } from '~/components/hooks';
+import {
+  GithubOutlined,
+  UserOutlined,
+  ExclamationCircleOutlined,
+  BranchesOutlined,
+} from '@ant-design/icons';
 
 export function SearchDetailPage() {
   const location = useLocation();
@@ -16,7 +22,13 @@ export function SearchDetailPage() {
 
   const columns = [
     {
-      title: 'Owner Name',
+      title: (
+        <Space>
+          Owner Name
+          <UserOutlined />
+        </Space>
+      ),
+
       dataIndex: 'owner_name',
       key: 'owner_name',
       render: (text: string) => (
@@ -27,7 +39,12 @@ export function SearchDetailPage() {
       width: 100,
     },
     {
-      title: 'Repository Name',
+      title: (
+        <Space>
+          Repository Name
+          <GithubOutlined />
+        </Space>
+      ),
       dataIndex: 'repository_name',
       key: 'repository_name',
       render: (text: string) => (
@@ -38,13 +55,24 @@ export function SearchDetailPage() {
       width: 100,
     },
     {
-      title: 'Number of Open Issues',
+      title: (
+        <Space>
+          Number of Open Issues
+          <ExclamationCircleOutlined />
+        </Space>
+      ),
+
       dataIndex: 'number_of_issues',
       key: 'number_of_issues',
       width: 100,
     },
     {
-      title: 'Default Branch',
+      title: (
+        <Space>
+          Default Branch
+          <BranchesOutlined />
+        </Space>
+      ),
       dataIndex: 'default_branch',
       key: 'default_branch',
       width: 100,

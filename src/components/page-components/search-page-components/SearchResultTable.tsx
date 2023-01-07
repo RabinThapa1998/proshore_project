@@ -21,7 +21,8 @@ export function SearchResultTable() {
         number_of_stars: item.stargazers_count,
         watchers: item.watchers_count,
         forks: item.forks_count,
-        full_name: item.full_name,
+        description: item.description,
+        updated_at: new Date(item.pushed_at).toLocaleDateString(),
       };
     });
   };
