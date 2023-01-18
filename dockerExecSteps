@@ -1,0 +1,8 @@
+# 1) build an image for dockerFile -> docker build .
+# 2) verify is docker image is created -> docker images ls   
+# 3) to delete docker image -> docker image rm <image id>
+# 4) to build a docker image with a name -> docker build -t <name> . 
+# 5) to run a docker image -> docker run -d -p hostport:containerport --name  <give-a-container-name> <image id>
+# 6) kill a docker container -> docker rm -f <container name>
+# 7) run a shell inside docker container -> docker exec -it <container name> bash
+# 8) binding docker ->  docker run -v $(pwd)/src:/app/src -d -p hostport:containerport --name  <give-a-container-name> <image id>
